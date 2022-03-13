@@ -75,6 +75,6 @@ namespace ariel{
             }
             res += "\n";
         }
-        return ("res");
+        return (res);
     }
 };

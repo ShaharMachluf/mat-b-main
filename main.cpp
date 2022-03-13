@@ -9,6 +9,7 @@ int main(){
         char first = 'a', second = 'b', choice = 'A';
         string mat = "";
         cout<<"To make a mat please press 'A', to quit press 'B'"<<endl;
+        cin>>choice;
         if(choice == 'A'){
             cout<<"enter two numbers and two symbols for the mat (seperate them using space)"<<endl;
             cin>>cols>>rows>>first>>second;

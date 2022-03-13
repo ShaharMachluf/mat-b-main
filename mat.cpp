@@ -3,19 +3,25 @@
 #include <vector>
 #include "mat.hpp"
 
+constexpr int FIRST_CHAR=33;
+constexpr int LAST_CHAR=126;
+
 using namespace std;
 
 bool check_exceptions(int cols, int rows, char first, char second){
     if(cols <= 0 || rows <=0){
         throw invalid_argument("The number of rows and the number of columns must be positive");
         return false;
-    } else if(cols%2 == 0 || rows%2 == 0){
+    } 
+    if(cols%2 == 0 || rows%2 == 0){
         throw invalid_argument("The number of rows and the number of columns must be odd");
         return false;
-    } else if(first == ' ' || first == '\n' || first == '\t' || second == ' ' || second == '\n' || second == '\t'){
+    }
+    if(first == ' ' || first == '\n' || first == '\t' || second == ' ' || second == '\n' || second == '\t'){
         throw invalid_argument("The symbols must not be empty symbols");
         return false;
-    } else if((int)first < 33 || (int)first > 126 || (int)second < 33 || (int)second > 126){
+    }
+    if((int)first < FIRST_CHAR || (int)first > LAST_CHAR || (int)second < FIRST_CHAR || (int)second > LAST_CHAR){
         throw invalid_argument("The symbols must be printable");
         return false;
     }
@@ -24,9 +30,10 @@ bool check_exceptions(int cols, int rows, char first, char second){
 
 namespace ariel{
     string mat(int cols, int rows, char first, char second){
-        int i = 0, j=0;
+        int i = 0;
+        int j=0;
         char sym = first;
-        string res = "";
+        string res;
         bool valid = check_exceptions(cols, rows, first, second); //make sure the input is valid
         if(!valid){
             return "";
@@ -64,9 +71,9 @@ namespace ariel{
         }
         for(i = 0; i < rows; i++){ //turn the 2D vector into string
             for(j = 0; j < cols; j++){
-                res = res + vec[i][j];
+                res += vec[i][j];
             }
-            res = res+"" + "\n"+"";
+            res += "\n";
         }
         return ("res");
     }

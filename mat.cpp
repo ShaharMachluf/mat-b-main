@@ -15,7 +15,7 @@ bool check_exceptions(int cols, int rows, char first, char second){
     } else if(first == ' ' || first == '\n' || first == '\t' || second == ' ' || second == '\n' || second == '\t'){
         throw invalid_argument("The symbols must not be empty symbols");
         return false;
-    } else if(cols < 33 || cols > 126 || rows < 33 || rows > 126){
+    } else if((int)first < 33 || (int)first > 126 || (int)second < 33 || (int)second > 126){
         throw invalid_argument("The symbols must be printable");
         return false;
     }
@@ -26,6 +26,7 @@ namespace ariel{
     string mat(int cols, int rows, char first, char second){
         int i = 0, j=0;
         char sym = first;
+        string res = "";
         bool valid = check_exceptions(cols, rows, first, second); //make sure the input is valid
         if(!valid){
             return "";
@@ -61,6 +62,12 @@ namespace ariel{
                 vec[j][i] = sym;
             }
         }
-        return ("ok");
+        for(i = 0; i < rows; i++){ //turn the 2D vector into string
+            for(j = 0; j < cols; j++){
+                res = res + vec[i][j];
+            }
+            res = res+"" + "\n"+"";
+        }
+        return ("res");
     }
 };
